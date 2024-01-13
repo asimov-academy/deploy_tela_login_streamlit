@@ -1,19 +1,19 @@
 import streamlit as st
 import streamlit_authenticator as stauth
-from dependencies import add_registro, consulta, consulta_geral, cria_tabela
+# from dependencies import add_registro, consulta, consulta_geral, cria_tabela
 from time import sleep
 
 def main():
-    try:
-        consulta_geral()
-    except:
-        cria_tabela()
+    # try:
+    #     consulta_geral()
+    # except:
+    #     cria_tabela()
 
-    db_query = consulta_geral()
+    # db_query = consulta_geral()
 
     registros = {'usernames': {}}
-    for data in db_query:
-        registros['usernames'][data[1]] = {'name' : data[0], 'password' : data[2]}
+    # for data in db_query:
+    #     registros['usernames'][data[1]] = {'name' : data[0], 'password' : data[2]}
 
     COOKIE_EXPIRY_DAYS = 30
     authenticator = stauth.Authenticate(
@@ -53,13 +53,13 @@ def confirmation_msg():
     if st.session_state.pswrd != st.session_state.confirm_pswrd:
         st.warning('Senhas não conferem')
         sleep(3)
-    elif consulta(st.session_state.user):
-        st.warning('Nome de usuário já existe.')
-        sleep(3)
-    else:
-        add_registro(st.session_state.nome,st.session_state.user, hashed_password[0])
-        st.success('Registro efetuado!')
-        sleep(3)
+    # elif consulta(st.session_state.user):
+    #     st.warning('Nome de usuário já existe.')
+    #     sleep(3)
+    # else:
+    #     add_registro(st.session_state.nome,st.session_state.user, hashed_password[0])
+    #     st.success('Registro efetuado!')
+    #     sleep(3)
 
 def usuario_form():
     with st.form(key="test", clear_on_submit=True):
